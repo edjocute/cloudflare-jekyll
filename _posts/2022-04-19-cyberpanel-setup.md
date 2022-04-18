@@ -7,7 +7,7 @@ tags:
   - web
 ---
 
-These instructions serve to collect the instructions for installing and setting up CyberPanel on Ubuntu 20.
+This page serves to collect the instructions for installing and setting up CyberPanel on Ubuntu 20.
 
 1) Add new user and allow sudo:
 
@@ -16,13 +16,13 @@ adduser username
 usermod -aG sudo username
 ```
 
-2) Set up ssh access from external computer:
+2) Upload ssh keys from external computer:
 
 ```bash
 ssh-copy-id
 ```
 
-3) 
+3) Restrict access to `.authorized_keys` file:
 
 ```bash
 sudo chmod 700 -R ~/.ssh
@@ -37,12 +37,20 @@ reboot
 ```
 
 
-5) Restrict ssh access:
+5) Restrict ssh access by editing `sshd_config`.
 
 ```bash
 sudo vi /etc/ssh/sshd_config
+```
+
+Change the following lines to
+```bash
 PermitRootLogin no
 PasswordAuthentication  no
+```
+
+Now restart ssh service.
+```
 sudo service ssh restart
 ```
 
@@ -54,10 +62,16 @@ sh <(curl https://cyberpanel.net/install.sh || wget -O - https://cyberpanel.net/
 
 7) Create new website and add IP address to DNS host.
 
+"/assets/images/cyberpanel/create_website.jpg"
+
 8) Get SSL certification (e.g. Let's Encrypt or Cloudflare)
 
-9) Access from https://name.tld:8090. 
-However, does not work behind Cloudflare proxy. To fix, change CyberPanel port to 8443 or disable Cloudflare proxy.
+9) Access from `https://domain.tld:8090`. 
+
+However, this does not work behind Cloudflare proxy. To fix, disable proxy or change CyberPanel port to 8443:
+
+"/assets/images/cyberpanel/create_change.jpg"
+
 
 
 
