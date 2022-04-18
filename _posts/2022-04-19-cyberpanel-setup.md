@@ -62,7 +62,7 @@ sh <(curl https://cyberpanel.net/install.sh || wget -O - https://cyberpanel.net/
 
 7) Create new website and add IP address to DNS host.
 
-"/assets/images/cyberpanel/create_website.jpg"
+{% include figure image_path="/assets/images/cyberpanel/create_website.jpg" alt="create website in cyberpanel" caption="" %}
 
 8) Get SSL certification (e.g. Let's Encrypt or Cloudflare)
 
@@ -70,7 +70,7 @@ sh <(curl https://cyberpanel.net/install.sh || wget -O - https://cyberpanel.net/
 
 However, this does not work behind Cloudflare proxy. To fix, disable proxy or change CyberPanel port to 8443:
 
-"/assets/images/cyberpanel/create_change.jpg"
+{% include figure image_path="/assets/images/cyberpanel/create_website.jpg" alt="change cyberpanel port" caption="" %}
 
 
 
