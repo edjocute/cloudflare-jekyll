@@ -13,7 +13,7 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Welcome
+title: Dark Halo
 email: admin@darkhalo.science
 description: >- # this means to ignore newlines until "baseurl:"
   Write an awesome description for your new site here. You can edit this
@@ -23,13 +23,14 @@ description: >- # this means to ignore newlines until "baseurl:"
 github_username: edjocute
 minimal_mistakes_skin: default
 search: true
+repository: edjocute/cloudflare-jekyll
 
 # Build settings
 markdown: kramdown
 remote_theme: mmistakes/minimal-mistakes
 # Outputting
 permalink: /:categories/:title/
-paginate: 5 # amount of posts to show
+paginate: 10 # amount of posts to show
 paginate_path: /page:num/
 timezone: Asia/Singapore # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
@@ -60,23 +61,23 @@ plugins:
 author:
   name   : "E.C."
   avatar : "/assets/images/illustris_box_dmdens_gasdens_500x500.png"
-  bio    : "Computational Physicist + Astronomer + Data Scientist"
+  bio    : "Computational Physicist<br>Astronomer<br>Data Scientist"
   links:
     - label: "Website"
       icon: "fas fa-fw fa-link"
-      url: "https://darkhalo.science"
+      url: "https://www.darkhalo.science"
     - label: "Email"
       icon: "fas fa-fw fa-envelope"
       url: "mailto:admin@darkhalo.science"
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
-      url: "linkedin.com"
+      url: "https://www.linkedin.com/in/eddie-chua-astro/"
     #- label: "Twitter"
     #  icon: "fab fa-fw fa-twitter-square"
     #  url: "https://twitter.com/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/"
+      url: "https://github.com/edjocute"
     #- label: "Instagram"
     #  icon: "fab fa-fw fa-instagram"
     #  url: "https://instagram.com/"
@@ -109,7 +110,7 @@ defaults:
     values:
       layout: single
       author_profile: true
-      read_time: true
+      read_time: false
       comments: false
       share: false
       related: true
