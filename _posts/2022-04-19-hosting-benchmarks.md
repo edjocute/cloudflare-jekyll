@@ -2,18 +2,22 @@
 title: "Some Benchmarks"
 date: 2022-04-19T11:53:00+08:00
 categories:
-  - blog
+  - Blog
 tags:
-  - web
+  - Web
+toc: true
+toc_sticky: true
+toc_label: "Servers"
+toc_icon: "fa-solid fa-server"
 ---
 
-Collection of web host benchmarks using [YASB][yasb]:
+Collection of benchmarks using [YASB][yasb]:
 ```
 curl -sL yabs.sh | bash
 ```
 
 ---
-1) Hetzner CPX11:
+# 1) Hetzner CPX11:
 
 ```bash
 # ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## #
@@ -82,9 +86,10 @@ Full Test       | https://browser.geekbench.com/v5/cpu/14406255
 ```
 
 ---
-2) RackNerd (San Jose):
+# 2) RackNerd (San Jose):
 
-```
+<div class="notice" markdown="1">
+```white
 LEB New Website Special - 3.5GB KVM
 
 3x vCPU Core
@@ -96,6 +101,7 @@ Full Root Admin Access
 1 Dedicated IPv4 Address
 KVM / SolusVM Control Panel - Reboot, Reinstall, Manage rDNS, & much more
 ```
+</div>
 
 
 ```bash
