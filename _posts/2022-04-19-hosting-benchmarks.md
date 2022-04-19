@@ -82,7 +82,7 @@ Full Test       | https://browser.geekbench.com/v5/cpu/14406255
 ```
 
 ---
-2) RackNerd:
+2) RackNerd (San Jose):
 
 ```
 LEB New Website Special - 3.5GB KVM
