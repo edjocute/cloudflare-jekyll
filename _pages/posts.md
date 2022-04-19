@@ -1,7 +1,7 @@
 ---
-title: "About"
-layout: archive
-permalink: /about/
+title: "Posts"
+permalink: /posts/
+layout: home
 author_profile: true
 header:
     overlay_image: assets/images/illustris_header.png
@@ -9,4 +9,7 @@ header:
     caption: "Photo credit: Illustris Team"
 ---
 
-Hello there.
+- [Posts categorized by year](/posts-by-year/)
+- [Categories](/categories/)
+- [Tags](/tags/)
+<br>

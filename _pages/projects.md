@@ -4,12 +4,11 @@ layout: archive
 permalink: /projects/
 classes: wide
 header:
-    image: assets/images/illustris_header.png
+    overlay_image: assets/images/illustris_header.png
     image_description: "Header image"
     caption: "Photo credit: Illustris Team"
 ---
 
----
 
 # Research
 
@@ -21,17 +20,7 @@ header:
 
 # Projects
 
-- Course project for CSE6242 (Data and Visual Analytics): [Visualizing the social, economic and financial impacts of COVID-19][cse6242project]
+- CSE6242 (Data and Visual Analytics) Spring 2022: **Visualizing the social, economic and financial impacts of COVID-19**
+([Website](https://cse6242.darkhalo.science), Report, Poster)
 
 
-
-
-
-
-
-
-
-
-
-
-[cse6242project]: cse6242.darkhalo.science
