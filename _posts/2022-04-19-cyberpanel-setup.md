@@ -34,6 +34,7 @@ sudo chmod 600 ~/.ssh/authorized_keys
 
 ```bash
 sudo apt update && sudo apt upgrade
+sudo apt install vim python-is-python3 curl
 reboot
 ```
 
@@ -52,7 +53,7 @@ PasswordAuthentication  no
 
 - Now restart ssh service.
 ```
-sudo service ssh restart
+sudo service sshd restart
 ```
 
 6) Install CyberPanel
