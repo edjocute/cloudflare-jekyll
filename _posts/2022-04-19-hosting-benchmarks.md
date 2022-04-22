@@ -1,6 +1,7 @@
 ---
 title: "Some Benchmarks"
 date: 2022-04-19T11:53:00+08:00
+last_modified_at: 2022-04-21T22:30:00+08:00
 categories:
   - Blog
 tags:
@@ -17,7 +18,8 @@ curl -sL yabs.sh | bash
 ```
 
 ---
-# 1) Hetzner CPX11:
+# 1) Hetzner CPX11 (Ashburn, VA):
+
 
 ```bash
 # ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## #
@@ -161,6 +163,83 @@ Full Test       | https://browser.geekbench.com/v5/cpu/14406263
 
 ---
 
+# 3) NetCup
+
+<div class="notice" markdown="1">
+```white
+RS Ostern S OST22
+
+4 Dedicated CPUs
+8 GB RAM
+320 GB SSD
+```
+</div>
+
+```
+# ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## #
+#              Yet-Another-Bench-Script              #
+#                     v2022-02-18                    #
+# https://github.com/masonr/yet-another-bench-script #
+# ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## #
+
+Thu 21 Apr 2022 04:11:55 PM CEST
+
+Basic System Information:
+---------------------------------
+Processor  : AMD EPYC 7702P 64-Core Processor
+CPU cores  : 4 @ 1996.250 MHz
+AES-NI     : ✔ Enabled
+VM-x/AMD-V : ❌ Disabled
+RAM        : 7.8 GiB
+Swap       : 0.0 KiB
+Disk       : 314.9 GiB
+
+fio Disk Speed Tests (Mixed R/W 50/50):
+---------------------------------
+Block Size | 4k            (IOPS) | 64k           (IOPS)
+  ------   | ---            ----  | ----           ----
+Read       | 46.44 MB/s   (11.6k) | 442.39 MB/s   (6.9k)
+Write      | 46.49 MB/s   (11.6k) | 444.72 MB/s   (6.9k)
+Total      | 92.94 MB/s   (23.2k) | 887.11 MB/s  (13.8k)
+           |                      |
+Block Size | 512k          (IOPS) | 1m            (IOPS)
+  ------   | ---            ----  | ----           ----
+Read       | 1.24 GB/s     (2.4k) | 1.68 GB/s     (1.6k)
+Write      | 1.30 GB/s     (2.5k) | 1.79 GB/s     (1.7k)
+Total      | 2.54 GB/s     (4.9k) | 3.47 GB/s     (3.3k)
+
+iperf3 Network Speed Tests (IPv4):
+---------------------------------
+Provider        | Location (Link)           | Send Speed      | Recv Speed
+                |                           |                 |
+Clouvider       | London, UK (10G)          | 744 Mbits/sec   | 2.37 Gbits/sec
+Online.net      | Paris, FR (10G)           | 634 Mbits/sec   | 2.37 Gbits/sec
+WorldStream     | The Netherlands (10G)     | 793 Mbits/sec   | 2.38 Gbits/sec
+WebHorizon      | Singapore (400M)          | 403 Mbits/sec   | 423 Mbits/sec
+Clouvider       | NYC, NY, US (10G)         | 502 Mbits/sec   | 1.72 Gbits/sec
+Velocity Online | Tallahassee, FL, US (10G) | 22.2 Mbits/sec  | 66.5 Mbits/sec
+Clouvider       | Los Angeles, CA, US (10G) | 401 Mbits/sec   | 1.01 Gbits/sec
+Iveloz Telecom  | Sao Paulo, BR (2G)        | busy            | busy
+
+iperf3 Network Speed Tests (IPv6):
+---------------------------------
+Provider        | Location (Link)           | Send Speed      | Recv Speed
+                |                           |                 |
+Clouvider       | London, UK (10G)          | 629 Mbits/sec   | 2.34 Gbits/sec
+Online.net      | Paris, FR (10G)           | 762 Mbits/sec   | 2.31 Gbits/sec
+WorldStream     | The Netherlands (10G)     | 569 Mbits/sec   | 2.34 Gbits/sec
+WebHorizon      | Singapore (400M)          | 493 Mbits/sec   | 419 Mbits/sec
+Clouvider       | NYC, NY, US (10G)         | 509 Mbits/sec   | 1.70 Gbits/sec
+Clouvider       | Los Angeles, CA, US (10G) | 156 Mbits/sec   | 1.17 Gbits/sec
+
+Geekbench 5 Benchmark Test:
+---------------------------------
+Test            | Value
+                |
+Single Core     | 1048
+Multi Core      | 4031
+Full Test       | https://browser.geekbench.com/v5/cpu/14458075
+```
 
 
 [hetzner]: https://www.hetzner.com/cloud
