@@ -6,15 +6,24 @@ classes: wide
 header:
     overlay_image: assets/images/illustris_header.png
     image_description: "Header image"
-    caption: "Photo credit: Illustris Team"
+    caption: "Photo credit: Illustris"
 ---
 
 
 # Research
 
+- Galaxy formation and evolution: effect of baryonic physics on dark matter haloes.
+
+- Machine Learning:  Physics-informed Neural Networks for solving differential equations.
+
+- Computational Fluid Dynamics: Using machine learning to understand transition of fluid flow from laminar to turbulent.
+
+
 ---
 
 # Publications
+
+
 
 ---
 
