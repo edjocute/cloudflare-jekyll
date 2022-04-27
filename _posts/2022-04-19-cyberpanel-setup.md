@@ -1,7 +1,7 @@
 ---
 title: "Setting up CyberPanel on Ubuntu 20"
 date: 2022-04-19T00:30:00+08:00
-last_modified_at: 2022-04-19T21:30:00+08:00
+last_modified_at: 2022-04-27T00:30:00+08:00
 categories:
   - Blog
 tags:
@@ -81,7 +81,23 @@ To fix, disable proxy or change CyberPanel port to 8443:
 
 </div>
 
+<div class="notice" markdown="1">
+Firewall rules sometimes disappear upon a server restart. If ssh access is lost, access server using console and add firewall rule:
+```
+firewall-cmd --zone=public --add-port=22/tcp
+```
 
+Add other ports accordingly, then access CyberPanel configuration and add the firewall rules again.
+</div>
+
+10) For Cloudflare proxy, we want to log the real visitor IP (instead of Cloudflare IP) (ref [1](https://openlitespeed.org/kb/reverse-proxy-basics/), [2](https://openlitespeed.org/kb/show-real-visitor-ip-instead-of-cloudflare-ips/))
+
+- In OpenLiteSpeed config (default port 7080), under `Server Configuration` &rarr; `General` &rarr;  `Settings`:
+```
+Use Client IP in Header: Trusted IP Only
+```
+Example:
+![clientip_screenshot](/assets/images/cyberpanel/clientip.png){: .align-center width="100%"}
 
 
 
