@@ -16,64 +16,76 @@ We assume that JupyterLab is already installed.
 ## 1. Configure JupyterLab/Hub
 
 1. Generate `jupyter_notebook_config.py` file:
-```bash
-$ jupyter notebook --generate-config
-```
+
+	```bash
+	$ jupyter notebook --generate-config
+	```
 
 2. Edit `jupyter_notebook_config.py`
 
 - Change base_url:
-```white
-c.NotebookApp.base_url = '/jlab'
-```
+
+	```
+	c.NotebookApp.base_url = '/jlab'
+	```
 
 - Change allowed hostnames:
-```white
-c.NotebookApp.local_hostnames = ['localhost', 'hostname.com']
-```
+
+	```
+	c.NotebookApp.local_hostnames = ['localhost', 'hostname.com']
+	```
 
 ## 2. Start Jupyter automatically
 
 We'll start Jupyterlab on port 8888. Change the directories according to your installation.
 
 - Create script:
-```$ vi ~/start-jupyter.sh```
 
-```white
-#!/bin/bash
+	```
+	vi ~/start-jupyter.sh
+	```
 
-/home/user/miniconda3/envs/jup/bin/jupyter-lab \
-        --notebook-dir=/home/user \
-        --port=8888 \
-        --ContentsManager.allow_hidden=True \
-        --no-browser
-```
+	Content:
+	```
+	#!/bin/bash
+
+	/home/user/miniconda3/envs/jup/bin/jupyter-lab \
+			--notebook-dir=/home/user \
+			--port=8888 \
+			--ContentsManager.allow_hidden=True \
+			--no-browser
+	```
 
 - Add new service:
-```$ vi /etc/systemd/system/jupyter.service```
 
-```white
-[Unit]
-Description=Jupyter Notebook
+	```
+	vi /etc/systemd/system/jupyter.service
+	```
+	
+	Content:
+	```
+	[Unit]
+	Description=Jupyter Notebook
 
-[Service]
-Type=simple
-PIDFile=/run/jupyer.pid
-ExecStart=/home/user/start-jupyter.sh
-User=user
-Group=group
-Restart=always
-RestartSec=30
+	[Service]
+	Type=simple
+	PIDFile=/run/jupyer.pid
+	ExecStart=/home/user/start-jupyter.sh
+	User=user
+	Group=group
+	Restart=always
+	RestartSec=30
 
-[Install]
-WantedBy=multi-user.target                 
-```
+	[Install]
+	WantedBy=multi-user.target                 
+	```
 
 - Start service
-```bash
-$ sudo service jupyter enable
-$ sudo service jupyter start
-```
+
+	```bash
+	sudo service jupyter enable
+	sudo service jupyter start
+	```
 
 ## 3. Configure OpenLiteSpeed (OLS)
 
@@ -100,3 +112,15 @@ This is required for the kernel connection.
 - Address: `localhost:8888`
 
 4. Restart OLS
+
+## Restart Python process (wsgi)
+
+``` 
+killall lswsgi
+```
+
+## Fix permission issues:
+
+```
+chown -R nobody:nogroup /usr/local/lsws/Example/html/demo
+```
