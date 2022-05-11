@@ -100,5 +100,7 @@ Example:
 ![clientip_screenshot](/assets/images/cyberpanel/clientip.png){: .align-center width="100%"}
 
 
+# References:
+[Cheatsheet](https://wpjohnny.com/cyberpanel-cheatsheet/)
 
 
