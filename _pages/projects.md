@@ -9,6 +9,11 @@ header:
     caption: "Photo credit: Illustris"
 ---
 
+<style type="text/css">
+  .archive {
+    font-size: 12pt;
+  }
+</style>
 
 # Research
 
@@ -22,7 +27,6 @@ header:
 ---
 
 # Publications
-
 
 
 - Md Abdur Razzak, Yong Dong Cui, Jonathan Tay, Zhen Wei Teo, Thirukumaran Nadesan, Boo Cheong Khoo, Vinh-Tan Nguyen, Daniel J Wise, <u>Kun Ting E Chua</u> and Boppana VBL, **Experimental study of skin friction drag reduction of turbulent boundary layer over shallow dimples**, AIAA 2022-0712, AIAA SCITECH 2022 Forum, January 2022, [10.2514/6.2022-0712](https://doi.org/10.2514/6.2022-0712)
