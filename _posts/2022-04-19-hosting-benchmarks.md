@@ -1,7 +1,7 @@
 ---
 title: "Some Benchmarks"
 date: 2022-04-19T11:53:00+08:00
-last_modified_at: 2022-04-21T22:30:00+08:00
+last_modified_at: 2022-05-08T03:00:00+08:00
 categories:
   - Blog
 tags:
@@ -18,7 +18,7 @@ curl -sL yabs.sh | bash
 ```
 
 ---
-# 1) Hetzner CPX11 (Ashburn, VA):
+## 1) Hetzner CPX11 (Ashburn, VA):
 
 
 ```bash
@@ -88,7 +88,7 @@ Full Test       | https://browser.geekbench.com/v5/cpu/14406255
 ```
 
 ---
-# 2) RackNerd (San Jose):
+## 2) RackNerd (San Jose):
 
 <div class="notice" markdown="1">
 ```white
@@ -163,7 +163,7 @@ Full Test       | https://browser.geekbench.com/v5/cpu/14406263
 
 ---
 
-# 3) NetCup
+## 3) NetCup
 
 <div class="notice" markdown="1">
 ```white
@@ -239,6 +239,66 @@ Test            | Value
 Single Core     | 1048
 Multi Core      | 4031
 Full Test       | https://browser.geekbench.com/v5/cpu/14458075
+```
+
+## 4) Oracle ARM
+
+```
+# ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## #
+#              Yet-Another-Bench-Script              #
+#                     v2022-05-06                    #
+# https://github.com/masonr/yet-another-bench-script #
+# ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## #
+
+Sat May  7 19:02:14 UTC 2022
+
+ARM compatibility is considered *experimental*
+
+Basic System Information:
+---------------------------------
+Uptime     : 0 days, 2 hours, 24 minutes
+Processor  : Neoverse-N1
+CPU cores  : 4 @ ??? MHz
+AES-NI     : ✔ Enabled
+VM-x/AMD-V : ❌ Disabled
+RAM        : 23.4 GiB
+Swap       : 0.0 KiB
+Disk       : 45.1 GiB
+Distro     : Ubuntu 20.04.4 LTS
+Kernel     : 5.13.0-1027-oracle
+
+fio Disk Speed Tests (Mixed R/W 50/50):
+---------------------------------
+Block Size | 4k            (IOPS) | 64k           (IOPS)
+  ------   | ---            ----  | ----           ----
+Read       | 6.39 MB/s     (1.5k) | 26.75 MB/s     (418)
+Write      | 6.40 MB/s     (1.6k) | 27.55 MB/s     (430)
+Total      | 12.80 MB/s    (3.2k) | 54.30 MB/s     (848)
+           |                      |
+Block Size | 512k          (IOPS) | 1m            (IOPS)
+  ------   | ---            ----  | ----           ----
+Read       | 24.24 MB/s      (47) | 23.91 MB/s      (23)
+Write      | 26.32 MB/s      (51) | 26.67 MB/s      (26)
+Total      | 50.57 MB/s      (98) | 50.58 MB/s      (49)
+
+iperf3 Network Speed Tests (IPv4):
+---------------------------------
+Provider        | Location (Link)           | Send Speed      | Recv Speed
+                |                           |                 |
+Clouvider       | London, UK (10G)          | 668 Mbits/sec   | 172 Mbits/sec
+Online.net      | Paris, FR (10G)           | busy            | busy
+Hybula          | The Netherlands (40G)     | 755 Mbits/sec   | 1.78 Gbits/sec
+Clouvider       | NYC, NY, US (10G)         | 4.01 Gbits/sec  | 3.60 Gbits/sec
+Velocity Online | Tallahassee, FL, US (10G) | 1.86 Gbits/sec  | 1.65 Gbits/sec
+Clouvider       | Los Angeles, CA, US (10G) | 839 Mbits/sec   | 776 Mbits/sec
+
+Geekbench 5 Benchmark Test:
+---------------------------------
+Test            | Value
+                |
+Single Core     | 841
+Multi Core      | 3296
+Full Test       | https://browser.geekbench.com/v5/cpu/14774048
 ```
 
 
