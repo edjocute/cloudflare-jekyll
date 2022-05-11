@@ -8,34 +8,34 @@ tags:
   - Web
 ---
 
-1) Install Ruby
+1. Install Ruby
 
 
-2) Install required gems by first navigating to directory with `Gemfile`.
+2. Install required gems by first navigating to directory with `Gemfile`.
 
-```bash
-cd project_dir
-bundle
-```
+	```bash
+	cd project_dir
+	bundle
+	```
 
-3) For building:
+3. For building:
 
-```bash
-bundle exec jekyll build
-```
+	```bash
+	bundle exec jekyll build
+	```
 
-4) For building and serving:
+4. For building and serving:
 
-```bash
-bundle add webrick
-bundle exec jekyll serve
-```
+	```bash
+	bundle add webrick
+	bundle exec jekyll serve
+	```
 
-5) For rebuilding upon changes:
+5. For rebuilding upon changes:
 
-```bash
-bundle exec jekyll build --watch
-```
+	```bash
+	bundle exec jekyll build --watch
+	```
 
 
 
