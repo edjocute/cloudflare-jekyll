@@ -102,6 +102,8 @@ LEB New Website Special - 3.5GB KVM
 Full Root Admin Access
 1 Dedicated IPv4 Address
 KVM / SolusVM Control Panel - Reboot, Reinstall, Manage rDNS, & much more
+
+$28.99 USD + Tax = $30.73 Annually
 ```
 </div>
 
@@ -163,7 +165,7 @@ Full Test       | https://browser.geekbench.com/v5/cpu/14406263
 
 ---
 
-## 3) NetCup
+## 3) NetCup Root Server Ostern S
 
 <div class="notice" markdown="1">
 ```white
@@ -301,6 +303,308 @@ Multi Core      | 3296
 Full Test       | https://browser.geekbench.com/v5/cpu/14774048
 ```
 
+## 5) [Greencloud](https://greencloudvps.com) EPYCMO-2
+
+<div class="notice" markdown="1">
+```white
+Double RAM + Bandwidth for Triennial payments
+No refund/Money back on this plan
+
+3072MB RAM
+1024MB SWAP
+35GB NVMe 4.0 RAID-10 Hard drive
+2 cores @ EPYC Milan CPU
+1 IPv4
+/112 IPv6
+5TB Bandwidth
+10Gbps Port
+Linux OS
+Kansas City, MO Location
+SolusVM Control Panel
+	
+$100 USD Triennially
+```
+</div>
+
+
+```
+# ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## #
+#              Yet-Another-Bench-Script              #
+#                     v2022-05-06                    #
+# https://github.com/masonr/yet-another-bench-script #
+# ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## #
+
+Sat 04 Jun 2022 05:44:43 AM BST
+
+Basic System Information:
+---------------------------------
+Uptime     : 1 days, 11 hours, 23 minutes
+Processor  : AMD EPYC 7543P 32-Core Processor
+CPU cores  : 2 @ 2794.748 MHz
+AES-NI     : ✔ Enabled
+VM-x/AMD-V : ✔ Enabled
+RAM        : 2.9 GiB
+Swap       : 1024.0 MiB
+Disk       : 33.4 GiB
+Distro     : Ubuntu 20.04 LTS
+Kernel     : 5.4.0-28-generic
+
+fio Disk Speed Tests (Mixed R/W 50/50):
+---------------------------------
+Block Size | 4k            (IOPS) | 64k           (IOPS)
+  ------   | ---            ----  | ----           ----
+Read       | 388.71 MB/s  (97.1k) | 4.59 GB/s    (71.8k)
+Write      | 389.73 MB/s  (97.4k) | 4.62 GB/s    (72.2k)
+Total      | 778.45 MB/s (194.6k) | 9.21 GB/s   (144.0k)
+           |                      |
+Block Size | 512k          (IOPS) | 1m            (IOPS)
+  ------   | ---            ----  | ----           ----
+Read       | 10.53 GB/s   (20.5k) | 12.22 GB/s   (11.9k)
+Write      | 11.08 GB/s   (21.6k) | 13.04 GB/s   (12.7k)
+Total      | 21.62 GB/s   (42.2k) | 25.26 GB/s   (24.6k)
+
+iperf3 Network Speed Tests (IPv4):
+---------------------------------
+Provider        | Location (Link)           | Send Speed      | Recv Speed
+                |                           |                 |
+Clouvider       | London, UK (10G)          | 1.62 Gbits/sec  | 1.84 Gbits/sec
+Online.net      | Paris, FR (10G)           | 2.21 Gbits/sec  | 1.82 Gbits/sec
+Hybula          | The Netherlands (40G)     | 1.64 Gbits/sec  | 1.70 Gbits/sec
+Clouvider       | NYC, NY, US (10G)         | 6.12 Gbits/sec  | 6.35 Gbits/sec
+Velocity Online | Tallahassee, FL, US (10G) | busy            | busy
+Clouvider       | Los Angeles, CA, US (10G) | 3.71 Gbits/sec  | 4.21 Gbits/sec
+
+Geekbench 5 Benchmark Test:
+---------------------------------
+Test            | Value
+                |
+Single Core     | 1158
+Multi Core      | 2298
+Full Test       | https://browser.geekbench.com/v5/cpu/15283838
+```
+
+## 6) [Server Factory](https://lowendspirit.com/discussion/3957/50-off-ryzen-epyc-vds-nl-alipay-btc-cc-pp-unmetered-incoming-traffic/) AMD EPYC™ XS VDS
+
+<div class="notice" markdown="1">
+```white
+AMD EPYC™ XS
+
+CPU: 0,5 Core / 1 Thread
+RAM: 4 GB
+STORAGE: 50 GB
+UPLINK: 1 Gbit/s
+UNMETERED INCOMING TRAFFIC
+Outgoing Traffic: 4 TB per month
+IPv4: 1
+IPv6: /64 Subnet
+
+49,00 € 24,50 € / annually
+Promotional Code for 50% OFF (RECURRING): EPYCRYZENVPS
+```
+</div>
+
+```
+# ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## #
+#              Yet-Another-Bench-Script              #
+#                     v2022-05-06                    #
+# https://github.com/masonr/yet-another-bench-script #
+# ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## #
+
+Mon 06 Jun 2022 10:37:49 AM CEST
+
+Basic System Information:
+---------------------------------
+Uptime     : 17 days, 15 hours, 21 minutes
+Processor  : AMD EPYC 7702P 64-Core Processor
+CPU cores  : 1 @ 1999.999 MHz
+AES-NI     : ✔ Enabled
+VM-x/AMD-V : ✔ Enabled
+RAM        : 3.8 GiB
+Swap       : 0.0 KiB
+Disk       : 49.1 GiB
+Distro     : Ubuntu 20.04.4 LTS
+Kernel     : 5.4.0-91-generic
+
+fio Disk Speed Tests (Mixed R/W 50/50):
+---------------------------------
+Block Size | 4k            (IOPS) | 64k           (IOPS)
+  ------   | ---            ----  | ----           ----
+Read       | 20.17 MB/s    (5.0k) | 258.86 MB/s   (4.0k)
+Write      | 20.17 MB/s    (5.0k) | 260.22 MB/s   (4.0k)
+Total      | 40.35 MB/s   (10.0k) | 519.09 MB/s   (8.1k)
+           |                      |
+Block Size | 512k          (IOPS) | 1m            (IOPS)
+  ------   | ---            ----  | ----           ----
+Read       | 997.98 MB/s   (1.9k) | 1.36 GB/s     (1.3k)
+Write      | 1.05 GB/s     (2.0k) | 1.45 GB/s     (1.4k)
+Total      | 2.04 GB/s     (4.0k) | 2.81 GB/s     (2.7k)
+
+iperf3 Network Speed Tests (IPv4):
+---------------------------------
+Provider        | Location (Link)           | Send Speed      | Recv Speed
+                |                           |                 |
+Clouvider       | London, UK (10G)          | 1.03 Gbits/sec  | 947 Mbits/sec
+Online.net      | Paris, FR (10G)           | 1.03 Gbits/sec  | 820 Mbits/sec
+Hybula          | The Netherlands (40G)     | 1.04 Gbits/sec  | 996 Mbits/sec
+Clouvider       | NYC, NY, US (10G)         | 520 Mbits/sec   | 889 Mbits/sec
+Velocity Online | Tallahassee, FL, US (10G) | busy            | busy
+Clouvider       | Los Angeles, CA, US (10G) | 344 Mbits/sec   | 894 Mbits/sec
+
+iperf3 Network Speed Tests (IPv6):
+---------------------------------
+Provider        | Location (Link)           | Send Speed      | Recv Speed
+                |                           |                 |
+Clouvider       | London, UK (10G)          | 1.03 Gbits/sec  | 982 Mbits/sec
+Online.net      | Paris, FR (10G)           | 1.02 Gbits/sec  | 791 Mbits/sec
+Hybula          | The Netherlands (40G)     | 1.04 Gbits/sec  | 985 Mbits/sec
+Clouvider       | NYC, NY, US (10G)         | 528 Mbits/sec   | 915 Mbits/sec
+Clouvider       | Los Angeles, CA, US (10G) | 326 Mbits/sec   | 790 Mbits/sec
+
+Geekbench 5 Benchmark Test:
+---------------------------------
+Test            | Value
+                |
+Single Core     | 491
+Multi Core      | 495
+Full Test       | https://browser.geekbench.com/v5/cpu/15321522
+```
+
+## 6) [Server Factory](https://lowendspirit.com/discussion/3981/nl-ipv6-only-kvm-vps-6-year-1-core-1gb-ram-10gb-nvme-ssd#latest) KVM-IPV6-1 VPS
+
+<div class="notice" markdown="1">
+```white
+CPU: 1 Core limited to 25% usage
+RAM: 1 GB
+STORAGE: 10 GB
+UPLINK: 1 Gbit/s
+TRAFFIC: 12 TB per year
+IPv6 only with /64 Subnet
+
+6 € annually
+```
+</div>
+
+```
+# ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## #
+#              Yet-Another-Bench-Script              #
+#                     v2022-05-06                    #
+# https://github.com/masonr/yet-another-bench-script #
+# ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## #
+
+Mon 06 Jun 2022 04:47:31 PM +08
+
+Basic System Information:
+---------------------------------
+Uptime     : 32 days, 23 hours, 10 minutes
+Processor  : AMD EPYC 7702P 64-Core Processor
+CPU cores  : 1 @ 1999.999 MHz
+AES-NI     : ✔ Enabled
+VM-x/AMD-V : ✔ Enabled
+RAM        : 976.8 MiB
+Swap       : 0.0 KiB
+Disk       : 9.8 GiB
+Distro     : Ubuntu 20.04.4 LTS
+Kernel     : 5.4.0-109-generic
+
+fio Disk Speed Tests (Mixed R/W 50/50):
+---------------------------------
+Block Size | 4k            (IOPS) | 64k           (IOPS)
+  ------   | ---            ----  | ----           ----
+Read       | 10.65 MB/s    (2.6k) | 130.07 MB/s   (2.0k)
+Write      | 10.67 MB/s    (2.6k) | 130.76 MB/s   (2.0k)
+Total      | 21.32 MB/s    (5.3k) | 260.83 MB/s   (4.0k)
+           |                      |
+Block Size | 512k          (IOPS) | 1m            (IOPS)
+  ------   | ---            ----  | ----           ----
+Read       | 442.85 MB/s    (864) | 473.53 MB/s    (462)
+Write      | 466.38 MB/s    (910) | 505.07 MB/s    (493)
+Total      | 909.23 MB/s   (1.7k) | 978.60 MB/s    (955)
+
+iperf3 Network Speed Tests (IPv6):
+---------------------------------
+Provider        | Location (Link)           | Send Speed      | Recv Speed
+                |                           |                 |
+Clouvider       | London, UK (10G)          | 1.02 Gbits/sec  | 513 Mbits/sec
+Online.net      | Paris, FR (10G)           | 1.01 Gbits/sec  | 434 Mbits/sec
+Hybula          | The Netherlands (40G)     | 1.02 Gbits/sec  | 943 Mbits/sec
+Clouvider       | NYC, NY, US (10G)         | 574 Mbits/sec   | 381 Mbits/sec
+Clouvider       | Los Angeles, CA, US (10G) | 382 Mbits/sec   | 524 Mbits/sec
+
+Geekbench releases can only be downloaded over IPv4. FTP the Geekbench files and run manually.
+Geekbench 5 Benchmark Test:
+---------------------------------
+Test            | Value
+                |
+Single Core     | 209
+Multi Core      | 197
+Full Test       | https://browser.geekbench.com/v5/cpu/15321839
+
+---------------------------------
+Test            | Value
+                |
+Single Core     | 206
+Multi Core      | 210
+Full Test       | https://browser.geekbench.com/v5/cpu/15322746
+```
+
+
+## 6) Scaleway Stardust
+
+
+```
+# ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## #
+#              Yet-Another-Bench-Script              #
+#                     v2022-05-06                    #
+# https://github.com/masonr/yet-another-bench-script #
+# ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## #
+
+Mon Jun  6 17:34:12 UTC 2022
+
+Basic System Information:
+---------------------------------
+Uptime     : 0 days, 4 hours, 34 minutes
+Processor  : AMD EPYC 7281 16-Core Processor
+CPU cores  : 1 @ 2096.058 MHz
+AES-NI     : ✔ Enabled
+VM-x/AMD-V : ✔ Enabled
+RAM        : 973.3 MiB
+Swap       : 512.0 MiB
+Disk       : 8.9 GiB
+Distro     : Ubuntu 20.04.4 LTS
+Kernel     : 5.4.0-113-generic
+
+fio Disk Speed Tests (Mixed R/W 50/50):
+---------------------------------
+Block Size | 4k            (IOPS) | 64k           (IOPS)
+  ------   | ---            ----  | ----           ----
+Read       | 115.91 MB/s  (28.9k) | 888.55 MB/s  (13.8k)
+Write      | 116.21 MB/s  (29.0k) | 893.22 MB/s  (13.9k)
+Total      | 232.12 MB/s  (58.0k) | 1.78 GB/s    (27.8k)
+           |                      |
+Block Size | 512k          (IOPS) | 1m            (IOPS)
+  ------   | ---            ----  | ----           ----
+Read       | 1.07 GB/s     (2.0k) | 1.11 GB/s     (1.0k)
+Write      | 1.12 GB/s     (2.2k) | 1.18 GB/s     (1.1k)
+Total      | 2.20 GB/s     (4.3k) | 2.30 GB/s     (2.2k)
+
+iperf3 Network Speed Tests (IPv6):
+---------------------------------
+Provider        | Location (Link)           | Send Speed      | Recv Speed
+                |                           |                 |
+Clouvider       | London, UK (10G)          | 359 Mbits/sec   | 313 Mbits/sec
+Online.net      | Paris, FR (10G)           | 212 Mbits/sec   | 4.41 Gbits/sec
+Hybula          | The Netherlands (40G)     | 207 Mbits/sec   | 4.32 Gbits/sec
+Clouvider       | NYC, NY, US (10G)         | 212 Mbits/sec   | 2.01 Gbits/sec
+Clouvider       | Los Angeles, CA, US (10G) | 239 Mbits/sec   | 1.13 Gbits/sec
+
+Geekbench 5 Benchmark Test:
+---------------------------------
+Test            | Value
+                |
+Single Core     | 477
+Multi Core      | 458
+Full Test       | https://browser.geekbench.com/v5/cpu/15329166
+```
 
 [hetzner]: https://www.hetzner.com/cloud
 [racknerd]: https://www.newcoupons.info/racknerd-cheap-kvm-vps-reseller-offers/
