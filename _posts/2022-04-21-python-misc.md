@@ -84,7 +84,14 @@ conda install mamba -n base -c conda-forge
 	display(HTML("<style>.container { width:100% !important; }</style>"))
 	```
 
-## 4. HTTP Server (Python 3)
+## 5. Reload ([ref](https://ipython.org/ipython-doc/3/config/extensions/autoreload.html))
+
+```
+%load_ext autoreload
+%autoreload 2
+```
+
+## 6. HTTP Server (Python 3)
 
 ```bash
 python -m http.server
