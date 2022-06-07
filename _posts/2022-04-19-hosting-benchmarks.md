@@ -383,6 +383,72 @@ Multi Core      | 2298
 Full Test       | https://browser.geekbench.com/v5/cpu/15283838
 ```
 
+```
+# ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## #
+#              Yet-Another-Bench-Script              #
+#                     v2022-05-06                    #
+# https://github.com/masonr/yet-another-bench-script #
+# ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## #
+
+Tue 07 Jun 2022 05:00:35 PM +08
+
+Basic System Information:
+---------------------------------
+Uptime     : 0 days, 0 hours, 12 minutes
+Processor  : AMD EPYC 7543P 32-Core Processor
+CPU cores  : 2 @ 2794.748 MHz
+AES-NI     : ✔ Enabled
+VM-x/AMD-V : ✔ Enabled
+RAM        : 5.8 GiB
+Swap       : 1024.0 MiB
+Disk       : 33.4 GiB
+Distro     : Ubuntu 20.04 LTS
+Kernel     : 5.4.0-28-generic
+
+fio Disk Speed Tests (Mixed R/W 50/50):
+---------------------------------
+Block Size | 4k            (IOPS) | 64k           (IOPS)
+  ------   | ---            ----  | ----           ----
+Read       | 387.49 MB/s  (96.8k) | 5.05 GB/s    (78.9k)
+Write      | 388.51 MB/s  (97.1k) | 5.07 GB/s    (79.3k)
+Total      | 776.00 MB/s (194.0k) | 10.13 GB/s  (158.2k)
+           |                      |
+Block Size | 512k          (IOPS) | 1m            (IOPS)
+  ------   | ---            ----  | ----           ----
+Read       | 13.26 GB/s   (25.9k) | 13.35 GB/s   (13.0k)
+Write      | 13.97 GB/s   (27.2k) | 14.24 GB/s   (13.9k)
+Total      | 27.23 GB/s   (53.1k) | 27.59 GB/s   (26.9k)
+
+iperf3 Network Speed Tests (IPv4):
+---------------------------------
+Provider        | Location (Link)           | Send Speed      | Recv Speed
+                |                           |                 |
+Clouvider       | London, UK (10G)          | busy            | busy
+Online.net      | Paris, FR (10G)           | 2.12 Gbits/sec  | 1.82 Gbits/sec
+Hybula          | The Netherlands (40G)     | 1.59 Gbits/sec  | busy
+Clouvider       | NYC, NY, US (10G)         | 4.67 Gbits/sec  | busy
+Velocity Online | Tallahassee, FL, US (10G) | busy            | busy
+Clouvider       | Los Angeles, CA, US (10G) | 4.09 Gbits/sec  | busy
+
+iperf3 Network Speed Tests (IPv6):
+---------------------------------
+Provider        | Location (Link)           | Send Speed      | Recv Speed
+                |                           |                 |
+Clouvider       | London, UK (10G)          | 1.41 Gbits/sec  | busy
+Online.net      | Paris, FR (10G)           | busy            | busy
+Hybula          | The Netherlands (40G)     | busy            | busy
+Clouvider       | NYC, NY, US (10G)         | 4.88 Gbits/sec  | busy
+Clouvider       | Los Angeles, CA, US (10G) | 3.60 Gbits/sec  | busy
+
+Geekbench 5 Benchmark Test:
+---------------------------------
+Test            | Value
+                |
+Single Core     | 1172
+Multi Core      | 2231
+Full Test       | https://browser.geekbench.com/v5/cpu/15337955
+```
+
 ## 6) [Server Factory](https://lowendspirit.com/discussion/3957/50-off-ryzen-epyc-vds-nl-alipay-btc-cc-pp-unmetered-incoming-traffic/) AMD EPYC™ XS VDS
 
 <div class="notice" markdown="1">
@@ -469,7 +535,7 @@ Multi Core      | 495
 Full Test       | https://browser.geekbench.com/v5/cpu/15321522
 ```
 
-## 6) [Server Factory](https://lowendspirit.com/discussion/3981/nl-ipv6-only-kvm-vps-6-year-1-core-1gb-ram-10gb-nvme-ssd#latest) KVM-IPV6-1 VPS
+## 7) [Server Factory](https://lowendspirit.com/discussion/3981/nl-ipv6-only-kvm-vps-6-year-1-core-1gb-ram-10gb-nvme-ssd#latest) KVM-IPV6-1 VPS
 
 <div class="notice" markdown="1">
 ```white
@@ -548,7 +614,7 @@ Full Test       | https://browser.geekbench.com/v5/cpu/15322746
 ```
 
 
-## 6) Scaleway Stardust
+## 8) Scaleway Stardust AMS-1
 
 
 ```
