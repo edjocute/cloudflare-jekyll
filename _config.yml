@@ -13,8 +13,8 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Dark Halo
-email: admin@darkhalo.science
+title: Eddie Chua
+email: eddie@cheleb.com
 description: >- # this means to ignore newlines until "baseurl:"
   Write an awesome description for your new site here. You can edit this
   line in _config.yml. It will appear in your document head meta (for
@@ -59,7 +59,7 @@ plugins:
   - jekyll-include-cache
 
 author:
-  name   : "E.C."
+  name   : "Hi, I'm Eddie!"
   avatar : "/assets/images/illustris_box_dmdens_gasdens_500x500.png"
   bio    : "Computational Physicist<br>Astronomer<br>Data Scientist"
   links:
@@ -68,7 +68,7 @@ author:
       url: "https://www.darkhalo.science"
     - label: "Email"
       icon: "fas fa-fw fa-envelope"
-      url: "mailto:admin@darkhalo.science"
+      url: "mailto:eddie@cheleb.com"
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
       url: "https://www.linkedin.com/in/eddie-chua-astro/"
