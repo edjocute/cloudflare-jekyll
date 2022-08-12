@@ -91,6 +91,24 @@ conda install mamba -n base -c conda-forge
 %autoreload 2
 ```
 
+## 6. Warnings ([ref](https://docs.python.org/3/library/warnings.html#temporarily-suppressing-warnings))
+
+
+
+- Temporary:
+	```
+	import warnings
+
+	def fxn():
+		warnings.warn("deprecated", DeprecationWarning)
+
+	with warnings.catch_warnings():
+		warnings.simplefilter("ignore")
+		warnings.filterwarnings("ignore", category=DeprecationWarning)
+		fxn()
+	```
+
+
 ## 6. HTTP Server (Python 3)
 
 ```bash
