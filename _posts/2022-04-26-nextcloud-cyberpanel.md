@@ -389,6 +389,10 @@ openssl rand -base64 16
 		```
 		
 	- Everything should pass if all goes well.
+	
+	- If `push server is not a trusted proxy` is encountered, let notify_push connect locally to the Nextcloud instance.
+		1. Add `nextcloud` to `trusted_domains'
+		2. Set `NEXTCLOUD_URL=http://nextcloud/` in `docker-compose.yml`
 
 4. Verification
 	- Browser console should not have errors connecting to websockets.
@@ -406,6 +410,8 @@ openssl rand -base64 16
 		```
 	If successful, connection counts should be more than zero:
 	![push](/assets/images/cyberpanel/notify_push.png){: .align-center width="40%"}
+	
+
 
 
 ### 9. Imagemagick
