@@ -98,6 +98,7 @@ exclude:
   - assets/js/vendor
   - Capfile
   - CHANGELOG.md
+  - "*CHANGELOG.*"
   - config
   - Gemfile
   - Gruntfile.js
