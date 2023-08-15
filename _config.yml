@@ -99,7 +99,7 @@ exclude:
   - Capfile
   - CHANGELOG.md
   - CHANGELOG
-  - *CHANGELOG*
+  - "*CHANGELOG*"
   - config
   - Gemfile
   - Gruntfile.js
