@@ -9,7 +9,7 @@ header:
     caption: "Photo credit: Illustris"
 ---
 
-My name is Eddie Chua. I am a scientist at the Institute of High Performance Computing where I tackle research problems where Physics and Machine Learning intersect.
+Hi I'm Eddie! As a senior scientist at the Institute of High Performance Computing (IHPC) here in Singapore, I tackle research problems where Physics and Machine Learning intersect.
 
 In my research, I have developed statistical and machine learning tools in a wide area of topics: galaxy formation, aircraft flight, nuclear fusion and even supply chain data. 
 

@@ -6,7 +6,7 @@ categories:
   - Blog
 tags:
   - Linux
-toc: true
+toc: false
 usemathjax: false
 copybutton: true
 ---
