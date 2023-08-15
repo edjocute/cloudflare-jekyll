@@ -7,8 +7,6 @@ categories:
 tags:
   - Linux
 toc: true
-usemathjax: false
-copybutton: true
 ---
 
 ### Remove password from PDF using Linux/WSL
