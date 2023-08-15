@@ -4,13 +4,16 @@
 
 @charset "utf-8";
 
-$masthead-background-color: #F5F5F5;
-
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
 
+$masthead-background-color: #F5F5F5;
 .masthead {
   border-bottom: 0px;
+  background: $masthead-background-color;
+}
+
+.greedy-nav {
   background: $masthead-background-color;
 }
 
@@ -31,3 +34,12 @@ html {
         font-size: 20px; // originally 22px
     }
 }
+
+//.page__content
+/*.sectionbody {
+  p,
+  li,
+  dl {
+    font-size: 0.75em;
+  }
+}*/
