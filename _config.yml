@@ -97,7 +97,7 @@ exclude:
   - assets/js/_main.js
   - assets/js/vendor
   - Capfile
-  - CHANGELOG
+  - CHANGELOG.md
   - config
   - Gemfile
   - Gruntfile.js
@@ -108,7 +108,7 @@ exclude:
   - package.json
   - package-lock.json
   - Rakefile
-  - README
+  - README.md
   - tmp
   - /docs # ignore Minimal Mistakes /docs
   - /test # ignore Minimal Mistakes /test
