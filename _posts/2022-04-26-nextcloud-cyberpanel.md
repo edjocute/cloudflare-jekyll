@@ -1,7 +1,7 @@
 ---
 title: "Installing Nextcloud on CyberPanel"
 date: 2022-04-26T22:30:00+08:00
-#last_modified_at: 2022-04-20T21:30:00+08:00
+#last_modified_at: 2023-08-15T14:00:00+08:00
 categories:
   - Blog
 tags:
@@ -501,9 +501,30 @@ To clear Nextcloud configuration and redo the setup, there are two options:
 	docker volume rm nextcloud_db
 	docker volume rm nextcloud_nextcloud
 	```
+	
+### 14 Updating Nextcloud
 
+1. Nextcloud can be simply updated and restarted by 
+	```shell
+	sudo docker-compose pull
+	sudo docker-compose down
+	sudo docker-compose up -d`
+	```
+	
+2. However, Nextcloud can only be updated one major version at a time. In this case, specify the specific version in `docker-compose.yml` e.g. 
 
-### 14. Notes
+	```yml
+	image: nextcloud:25
+	```
+
+3. After updating, check that there are not security and setup warnings. If the warning `The database is missing some indexes. Due to the fact that adding indexes on big tables could take some time they were not added automatically.` is obtained, run the following command ([ref](https://www.reddit.com/r/NextCloud/comments/r9zw8r/how_to_run_occ_command_to_add_missing_indices/)):
+
+	```bash
+	sudo docker exec --user www-data nextcloud_app php occ db:add-missing-indices
+	```
+	
+
+### 15. Notes
 
 OpenLiteSpeed does not support `SetEnvIf` for headers (e.g. `env=HTTPS` does not work) ([ref](https://forum.openlitespeed.org/threads/access-control-allow-origin-multiple-origin-domains.4359/)).
 
