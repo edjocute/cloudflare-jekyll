@@ -1,7 +1,7 @@
 ---
 title: "Deploying Nextcloud"
 date: 2022-04-26T22:30:00+08:00
-last_modified_at: 2023-08-15T14:00:00+08:00
+last_modified_at: 2023-08-16T22:00:00+08:00
 categories:
   - Blog
 tags:
@@ -14,7 +14,7 @@ copybutton: true
 Docker-compose can be easily used to deploy Nextcloud on your own webserver using the official images available at Docker Hub.
 Apart from the main Nextcloud app, we go through how to set up the opensource online office suite Collabora which can serve as a replacement for Google Docs.
 
-This set of notes is a compilation of instructions I have found online (forums, Reddit, Stackover etc.) and have worked for me on my Ubuntu server.
+This set of notes is a compilation of instructions I have found online (forums, Reddit, Stackover etc.) and have worked for me on Ubuntu with Caddy for Nextcloud version 25.
 
 
 ## Docker-compose
@@ -38,41 +38,24 @@ volumes:
 
 networks:
   nextcloud:
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.name: br-nextcloud
     ipam:
       driver: default
       config:
-        - subnet: 172.28.0.0/16
+        - subnet: ${IPV4_NETWORK}.0/16
 
 
 services:
-  db:
-    image: mariadb:latest
-    container_name: nextcloud-mariadb
-    networks:
-      - nextcloud
-    restart: unless-stopped
-    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
-    volumes:
-      - ${NEXTCLOUD_ROOT}/mariadb:/var/lib/mysql
-    environment:
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-      - MYSQL_DATABASE=nextcloud
-      - MYSQL_USER=nextcloud
 
-  redis:
-    image: redis:latest
-    container_name: nextcloud-redis
-    networks:
-      - nextcloud
-    restart: unless-stopped
-    command: redis-server --requirepass ${REDIS_HOST_PASSWORD}
-
+  # Nextcloud
   app:
     image: nextcloud:stable
     container_name: nextcloud
     networks:
-      - nextcloud
+		nextcloud:
+			ipv4_address: ${IPV4_NETWORK}.2
     restart: unless-stopped
     ports:
       - 127.0.0.1:9001:80
@@ -90,7 +73,7 @@ services:
       - MYSQL_HOST=db
       - REDIS_HOST=redis
       - REDIS_HOST_PASSWORD=${REDIS_HOST_PASSWORD}
-      - TRUSTED_PROXIES=172.28.0.1
+      #- TRUSTED_PROXIES=${IPV4_NETWORK}.1
       - NEXTCLOUD_TRUSTED_DOMAINS=${NEXTCLOUD_FQDN}
       - OVERWRITEPROTOCOL=https
       - PHP_MEMORY_LIMIT=2048M
@@ -98,73 +81,72 @@ services:
     depends_on:
       - db
       - redis
-
-  coturn:
-    image: coturn/coturn
-    container_name: nextcloud-coturn
-    restart: unless-stopped
-    #network_mode: host
+	  
+	  
+  # MariaDB Database
+  db:
+    image: mariadb:latest
+    container_name: nextcloud-mariadb
     networks:
-      - nextcloud
-    ports:
-      - 127.0.0.1:2052:2052/tcp
-      - 127.0.0.1:2052:2052/udp
-        #- 5349:5349/tcp
-        #- 5349:5349/udp
-        #volumes:
-            #- /etc/letsencrypt/live/cloud.darkhalo.science/:/certs:ro
-    command:
-      - -n
-      - --log-file=stdout
-      - --realm=${NEXTCLOUD_FQDN}
-      - --listening-port=2052
-        #- --tls-listening-port=5349
-      - --listening-ip=0.0.0.0
-        #- --relay-ip=${NEXTCLOUD_IPADDRESS}
-      - --external-ip=${NEXTCLOUD_IPADDRESS}
-      - --no-tlsv1
-      - --no-tlsv1_1
-        #- --cert=/certs/cert.pem
-        #- --pkey=/certs/privkey.pem
-      - --min-port=49160
-      - --max-port=49200
-        #- --user=test:test123
-        #- --no-multicast-peers
-        #- --lt-cred-mech
-      - --use-auth-secret
-      - --static-auth-secret=${COTURN_SECRET}
+		nextcloud:
+			ipv4_address: ${IPV4_NETWORK}.3
+    restart: unless-stopped
+    command: ['--transaction-isolation=READ-COMMITTED', '--binlog-format=ROW', '--innodb_read_only_compressed=OFF']
+    volumes:
+      - ${NEXTCLOUD_ROOT}/mariadb:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
 
+
+  # Redis
+  redis:
+    image: redis:latest
+    container_name: nextcloud-redis
+    networks:
+		nextcloud:
+			ipv4_address: ${IPV4_NETWORK}.4
+    restart: unless-stopped
+    command: redis-server --requirepass ${REDIS_HOST_PASSWORD}
+
+
+  # Collabora
   collabora:
     image: collabora/code
     container_name: collabora
     restart: unless-stopped
     networks:
-      - nextcloud
+		nextcloud:
+			ipv4_address: ${IPV4_NETWORK}.7
     ports:
       - 127.0.0.1:9980:9980
         #extra_hosts:
         #- "${NEXTCLOUD_FQDN}:${NEXTCLOUD_IPADDRESS}"
         #- "${COLLABORA_FQDN}:${NEXTCLOUD_IPADDRESS}"
-    volumes:
-      - ${NEXTCLOUD_ROOT}/collabora/coolwsd.xml:/etc/coolwsd/coolwsd.xml
+    #volumes:
+    #  - ${NEXTCLOUD_ROOT}/collabora/coolwsd.xml:/etc/coolwsd/coolwsd.xml
     environment:
-            #- 'domain=site\\.darkhalo\\.science'
-      - 'server_name=office.darkhalo.science'
-      - "aliasgroup1=https://cloud.darkhalo.science"
-      - 'dictionaries=en'
-      - 'username=admin'
-      - 'password=adminpassword'
-      - "extra_params=--o:ssl.enable=false"
+      - domain=${NEXTCLOUD_FQDN}
+      #- server_name=${COLLABORA_FQDN}
+      #- aliasgroup1=
+      - dictionaries=en
+      - username=admin
+      - password=adminpassword
+      - extra_params=--o:ssl.enable=true
     cap_add:
       - MKNOD
     tty: true
 
+  # Push Notifications
   notify_push:
     image: nextcloud:stable
     container_name: nextcloud-notify_push
     restart: unless-stopped
     networks:
-      - nextcloud
+		nextcloud:
+			ipv4_address: ${IPV4_NETWORK}.5
     ports:
       - 127.0.0.1:7867:7867
     links:
@@ -178,16 +160,55 @@ services:
       - ${NEXTCLOUD_ROOT}/html:/var/www/html:ro
     environment:
       - PORT=7867
-      - NEXTCLOUD_URL=https://cloud.darkhalo.science/
+      - NEXTCLOUD_URL=http://nextcloud/
       - DATABASE_URL=mysql://nextcloud:${MYSQL_PASSWORD}@db/nextcloud
       - DATABASE_PREFIX=oc_
       - REDIS_URL=redis://:${REDIS_HOST_PASSWORD}@redis
     entrypoint: /var/www/html/custom_apps/notify_push/bin/x86_64/notify_push /var/www/html/config/config.php
+	
+	
+  # Coturn server
+  coturn:
+    image: coturn/coturn
+    container_name: nextcloud-coturn
+    restart: unless-stopped
+    #network_mode: host
+    networks:
+		nextcloud:
+			ipv4_address: ${IPV4_NETWORK}.5
+    ports:
+      - 127.0.0.1:2052:2052/tcp
+      - 127.0.0.1:2052:2052/udp
+        #- 5349:5349/tcp
+        #- 5349:5349/udp
+        #volumes:
+            #- /etc/letsencrypt/live/cloud.darkhalo.science/:/certs:ro
+    command:
+      - -n
+      - --log-file=stdout
+      - --realm=${NEXTCLOUD_FQDN}
+      - --listening-port=2052
+      #- --tls-listening-port=5349
+      - --listening-ip=0.0.0.0
+      #- --relay-ip=${NEXTCLOUD_IPADDRESS}
+      - --external-ip=${NEXTCLOUD_IPADDRESS}
+      - --no-tlsv1
+      - --no-tlsv1_1
+      #- --cert=/certs/cert.pem
+      #- --pkey=/certs/privkey.pem
+      - --min-port=49160
+      - --max-port=49200
+      #- --user=test:test123
+      #- --no-multicast-peers
+      #- --lt-cred-mech
+      - --use-auth-secret
+      - --static-auth-secret=${COTURN_SECRET}
 ```
 
 - Here, we have provided a subnet so the stack will be accessible at a known address, 172.28.0.x in this case.
 - By specifying the ports as `127.0.0.0:xxxx:xxxx`, the services will only be accessible to localhost or via a reverse proxy (next section). This prevents the ports from being exposed to external networks. When troubleshooting, it might be useful to remove `127.0.0.1` and test that the services can be accessed remotely from the external server ip address.
 - In this example, we have the main Nextcloud service running on port `9001`.
+- For Collabora, the `domain` variable should be the domain name of the nextcloud server, not the collabora server. [(ref)](https://help.nextcloud.com/t/no-acceptable-wopi-hosts-found-matching-the-target-host/12392)
 
 ### 3. Create environment file
 The above `docker-compose.yml` relies on some variables which need to be defined. 
@@ -195,15 +216,18 @@ These go into a `.env` file.
 
 {% include codeHeader.html %}
 ```
+NEXTCLOUD_ROOT=/opt/docker/nextcloud
 NEXTCLOUD_IPADDRESS=x.x.x.x
 NEXTCLOUD_FQDN=cloud.domain.com
 COLLABORA_FQDN=office.domain.com
-MYSQL_ROOT_PASSWORD=...
-MYSQL_PASSWORD=...
-REDIS_HOST_PASSWORD=...
-COTURN_SECRET=...
-```
+IPV4_NETWORK=172.28.1
 
+MYSQL_ROOT_PASSWORD=xxx
+MYSQL_PASSWORD=xxx
+REDIS_HOST_PASSWORD=xxx
+COTURN_SECRET=xxx
+```
+- Chosse the NEXTCLOUD_ROOT directory accordingly.
 - NEXTCLOUD_IPADDRESS is the ip address of the server.
 - The two FQDNs are the fully qualified domain names where Nextcloud and Collabora will be available at.
 - To generate random hex keys,
@@ -218,6 +242,10 @@ COTURN_SECRET=...
 - Secure the passwords and secrets by making sure `.env` is only accessible to root:
 	```
 	sudo chmod 0700 .env
+	```
+- Check that the environmental variables work:
+	```
+	sudo docker-compose config
 	```
 
 ### 4. Start the container stack
@@ -243,7 +271,7 @@ The caddy configuration file is by default located at `/etc/caddy/Caddyfile`. Ad
 {% include codeHeader.html %}
 ```
 # Nextcloud
-@nextcloud host cloud.darkhalo.science
+@nextcloud host cloud.domain.com
 handle @nextcloud {
    header Strict-Transport-Security max-age=15552000;
 
@@ -275,17 +303,26 @@ handle @nextcloud {
 }
 
 # Collabora
-@collabora host office.darkhalo.science
+@collabora host office.domain.com
 handle @collabora {
-   encode gzip
-   reverse_proxy localhost:9980
+	encode gzip zstd
+   
+	reverse_proxy https://localhost:9980 {
+		header_up Host {host}
+        header_up Connection "Upgrade"
+        header_up Upgrade websocket
+        transport http {
+			tls_insecure_skip_verify
+        }
+	}
+
 }
 ```
 
 - For the calendar and contact sync to function properly, we need to redirect and make sure `/.well-known/carddav` and `/.well-known/caldav` are accessible.
 - For push service, `/push/` has to be redirected to the coturn service.
 - There have been bugs allowing users to access files in the Nextcloud directory from the url. To ensure this does not happen, we specify files and folders to which access is forbidden.
-
+- The configuration for Collabora is courtesy of [(this forum post)](https://caddy.community/t/help-with-getting-caddy-working-with-nextcloud-and-collabra/14543).
 
 
 ---
@@ -467,12 +504,16 @@ To clear Nextcloud configuration and redo the setup, there are two options:
 	image: nextcloud:25
 	```
 
-3. After updating, check that there are not security and setup warnings. If the warning `The database is missing some indexes. Due to the fact that adding indexes on big tables could take some time they were not added automatically.` is obtained, run the following command ([ref](https://www.reddit.com/r/NextCloud/comments/r9zw8r/how_to_run_occ_command_to_add_missing_indices/)):
+3. After updating, verifying the security and setup warnings. If the warning `The database is missing some indexes. Due to the fact that adding indexes on big tables could take some time they were not added automatically.` is obtained, run the following command ([ref](https://www.reddit.com/r/NextCloud/comments/r9zw8r/how_to_run_occ_command_to_add_missing_indices/)):
 
-	```bash
+	```console
 	sudo docker exec --user www-data nextcloud_app php occ db:add-missing-indices
 	```
 	
+4. If MariaDB is updated, we can update the database as such:
+	```console
+	source .env && docker-compose exec nextcloud-mariadb mysql_upgrade -uroot -p${MARIADB_ROOT_PASSWORD}
+	```
 
 
 ---
@@ -552,7 +593,7 @@ To enable the Nextcloud container to access mariadb, setup a separate mariadb co
 		RewriteRule ^\.well-known/caldav https://%{SERVER_NAME}/remote.php/dav/ [R=301,L]
 		RewriteCond %{HTTPS} !=on
 		RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-		RewriteRule (.*)$ http://nextcloud/$1 [P,L,E=PROXY-HOST:cloud.darkhalo.science]
+		RewriteRule (.*)$ http://nextcloud/$1 [P,L,E=PROXY-HOST:cloud.domain.com]
 		```
 		
 		![details](/assets/images/cyberpanel/ols_static_rewrite.png){: .align-center width="80%"}
@@ -595,7 +636,7 @@ OpenLiteSpeed does not support `SetEnvIf` for headers (e.g. `env=HTTPS` does not
 			```
 			RewriteCond %{HTTPS} !=on
 			RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-			RewriteRule (.*)$ http://collabora/$1 [P,L,E=PROXY-HOST:office.darkhalo.science]
+			RewriteRule (.*)$ http://collabora/$1 [P,L,E=PROXY-HOST:office.domain.com]
 			```
 		
 	- Add `Web Socket Proxy`:

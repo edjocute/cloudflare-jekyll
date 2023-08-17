@@ -19,10 +19,12 @@ If using Cloudflare proxy, we need to set `X-Real-IP` header to that of the remo
 handle @vw {
   handle_path /notifications/hub/negotiate/ {
 	 reverse_proxy localhost:9000
+	 header_up X-Real-IP {http.request.header.CF-Connecting-IP}
   }
 
   handle_path /notifications/hub/ {
 	 reverse_proxy localhost:3012
+	 header_up X-Real-IP {http.request.header.CF-Connecting-IP}
   }
 
   reverse_proxy localhost:9000 {
