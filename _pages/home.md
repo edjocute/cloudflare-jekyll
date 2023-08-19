@@ -11,7 +11,7 @@ header:
 
 Welcome to my page! I'm Eddie, a senior scientist at the Institute of High Performance Computing (IHPC) located in Singapore.
 
-Drawing on my graduate training as an astrophycist, I now tackle research problems at the intersection of Physics and Machine Learning. 
+Drawing on my graduate training as an astrophysicist, I now tackle research problems at the intersection of Physics and Machine Learning. 
 I describe more about my current research [here]({% link _pages/about.md %}) and you can find a list of my current research and published papers on the [Projects]({% link _pages/projects.md %}) page.
 
 
