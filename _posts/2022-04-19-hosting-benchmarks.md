@@ -1,11 +1,11 @@
 ---
-title: "Some Benchmarks"
+title: "VPS Benchmarks"
 date: 2022-04-19T11:53:00+08:00
-last_modified_at: 2022-05-08T03:00:00+08:00
+last_modified_at: 2023-08-20T01:00:00+08:00
 categories:
   - Blog
 tags:
-  - Web
+  - VPS
 toc: true
 toc_sticky: true
 toc_label: "Servers"

@@ -7,6 +7,7 @@ categories:
 tags:
   - Writing
   - Latex
+  - Science
 toc: true
 usemathjax: true
 ---

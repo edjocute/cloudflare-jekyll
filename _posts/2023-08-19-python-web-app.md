@@ -5,7 +5,7 @@ date: 2023-08-19T23:30:00+08:00
 categories:
   - Blog
 tags:
-  - Web
+  - VPS
   - Python
 toc: true
 usemathjax: false

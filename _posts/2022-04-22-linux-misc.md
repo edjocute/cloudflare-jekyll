@@ -1,12 +1,11 @@
 ---
 title: "Linux: Miscellaneous"
 date: 2022-04-22T13:45:00+08:00
-#last_modified_at: 2022-04-20T21:30:00+08:00
+last_modified_at: 2023-08-20T01:30:00+08:00
 categories:
   - Blog
 tags:
-  - Android
-  - Oneplus
+  - Linux
 ---
 
 ## 1. Terminal

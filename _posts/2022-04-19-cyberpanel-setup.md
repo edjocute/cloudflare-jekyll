@@ -5,7 +5,7 @@ last_modified_at: 2022-04-27T00:30:00+08:00
 categories:
   - Blog
 tags:
-  - Web
+  - VPS
 ---
 
 My reminder for installing and setting up CyberPanel on Ubuntu 20.

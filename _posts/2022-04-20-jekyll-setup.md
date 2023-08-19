@@ -5,7 +5,7 @@ date: 2022-04-20T03:30:00+08:00
 categories:
   - Blog
 tags:
-  - Web
+  - VPS
 ---
 
 1. Install Ruby

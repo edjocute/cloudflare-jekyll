@@ -1,12 +1,15 @@
 ---
 title: "Configuring Vaultwarden docker on CyberPanel"
 date: 2022-04-25T23:30:00+08:00
-#last_modified_at: 2022-04-20T21:30:00+08:00
+last_modified_at: 2023-08-20T01:00:00+08:00
 categories:
   - Blog
 tags:
-  - Web
-toc: false
+  - VPS
+  - Docker
+toc: true
+toc_sticky: true
+toc_label: "Vaultwarden"
 usemathjax: false
 copybutton: true
 ---

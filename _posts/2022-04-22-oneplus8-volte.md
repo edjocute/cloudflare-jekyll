@@ -1,12 +1,11 @@
 ---
 title: "Oneplus 8 VoLTE (Android 11)"
 date: 2022-04-22T13:30:00+08:00
-last_modified_at: 2022-04-25T18:00:00+08:00
+last_modified_at: 2023-08-20T01:30:00+08:00
 categories:
   - Blog
 tags:
   - Android
-  - Oneplus
 ---
 
 ## With PDC + root:

@@ -5,7 +5,7 @@ date: 2022-05-15T13:30:00+08:00
 categories:
   - Blog
 tags:
-  - Web
+  - VPS
 toc: true
 usemathjax: false
 copybutton: true
