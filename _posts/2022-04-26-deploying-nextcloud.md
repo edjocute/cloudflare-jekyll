@@ -1,7 +1,7 @@
 ---
 title: "Deploying Nextcloud"
 date: 2022-04-26T22:30:00+08:00
-last_modified_at: 2023-08-16T22:00:00+08:00
+last_modified_at: 2023-08-20T01:00:00+08:00
 categories:
   - Blog
 tags:
@@ -231,27 +231,27 @@ COTURN_SECRET=xxx
 - NEXTCLOUD_IPADDRESS is the ip address of the server.
 - The two FQDNs are the fully qualified domain names where Nextcloud and Collabora will be available at.
 - To generate random hex keys,
-	```
-	openssl rand -hex 32
-	```
+ ```sh
+openssl rand -hex 32
+ ```
 
 - For hash keys,
-	```
-	openssl rand -base64 16
-	```
+ ```sh
+openssl rand -base64 16
+```
 - Secure the passwords and secrets by making sure `.env` is only accessible to root:
-	```
-	sudo chmod 0700 .env
-	```
+ ```sh
+sudo chmod 0700 .env
+```
 - Check that the environmental variables work:
-	```
-	sudo docker-compose config
-	```
+ ```sh
+sudo docker-compose config
+```
 
 ### 4. Start the container stack
 
 In the `/opt/docker/nextcloud` directory, run
-```
+```sh
 sudo docker-compose up -d
 ```
 The first run will take a moment for the databases to be created and set up.
@@ -338,52 +338,47 @@ Log in as admin and enter admin settings. Check if any warnings displayed.
 - Add the following to `config/config.php` [(ref)](https://github.com/nextcloud/docker/issues/800):
 
 	```php
-	  'trusted_proxies' =>
-	  array (
-		0 => '172.28.0.1',
-	  ),
-	  'forwarded-for-headers' =>
-	  array (
-		0 => 'HTTP_X_FORWARDED_FOR',
-	  ),
+  'trusted_proxies' =>
+  array (
+	0 => '172.28.0.1',
+  ),
+  'forwarded-for-headers' =>
+  array (
+	0 => 'HTTP_X_FORWARDED_FOR',
+  ),
 	```
 
 
 - Alternatively, use the command:
-
-	```shell
-	docker exec --user www-data nextcloud php occ config:system:set trusted_proxies 1 --value='172.28.0.1'
-	```
+ ```sh
+docker exec --user www-data nextcloud php occ config:system:set trusted_proxies 1 --value='172.28.0.1'
+```
 
 - Check the correct IP value using:
-
-	```shell
-	docker network inspect nextcloud_nextcloud
-	```
+ ```sh
+docker network inspect nextcloud_nextcloud
+```
 
 ### 6. Setup 2FA
 
 - Follow instructions [here](https://nextcloud-twofactor-gateway.readthedocs.io/en/latest/Admin%20Documentation/).
 
 - Execute command:
-	
-	```shell
-	docker exec -u www-data -it nextcloud php occ twofactorauth:gateway:configure telegram
-	```
+ ```sh
+docker exec -u www-data -it nextcloud php occ twofactorauth:gateway:configure telegram
+```
 
 ### 7. Cron job ([ref](https://blog.mariu5.de/~/MariusBlog/the-easiest-way-to-set-up-cron-for-the-nextcloud-docker-image/))
 
 - In the host:
-
-	```shell
-	crontab -e
-	```
+ ```sh
+crontab -e
+```
 
 - Add the lines:
-
-	```
-	*/5 * * * * docker exec -u www-data nextcloud php cron.php
-	```
+ ```
+*/5 * * * * docker exec -u www-data nextcloud php cron.php
+```
 
 
 ### 8. High Performance Backend
@@ -395,10 +390,9 @@ Log in as admin and enter admin settings. Check if any warnings displayed.
 
 2. Setup app
 	- Run the command:
-	
-		```console
-		docker exec -u www-data nextcloud php occ notify_push:setup https://cloud.domain.com/push
-		```
+    ```sh
+docker exec -u www-data nextcloud php occ notify_push:setup https://cloud.domain.com/push
+	```
 		
 	- Everything should pass if all goes well.
 	
@@ -410,16 +404,15 @@ Log in as admin and enter admin settings. Check if any warnings displayed.
 	- Browser console should not have errors connecting to websockets.
 	
 	- Using logs:
-	
-		```console
-		docker logs nextcloud
-		```
+ ```sh
+docker logs nextcloud
+```
 
 	- Using metrics:
-				
-		```shell
-		docker exec -u www-data nextcloud php occ notify_push:metrics
-		```
+ ```sh
+docker exec -u www-data nextcloud php occ notify_push:metrics
+```
+	
 	If successful, connection counts should be more than zero:
 	![push](/assets/images/cyberpanel/notify_push.png){: .align-center width="40%"}
 	
@@ -449,7 +442,7 @@ docker exec -u www-data nextcloud php occ config:system:set overwrite.cli.url --
 ```
 
 
-
+<!--
 ### 12. Collabora
 
 Since we're behind a reverse proxy handling SSL, we need to disable the internal SSL for Collabora.
@@ -469,10 +462,10 @@ Since we're behind a reverse proxy handling SSL, we need to disable the internal
 		```
 
 	- Mount the file as shown in `docker-compose.yml`
+-->
 
 
-
-### 13. Resetting configuration
+### 12. Resetting configuration
 
 To clear Nextcloud configuration and redo the setup, there are two options:
 
@@ -483,37 +476,38 @@ To clear Nextcloud configuration and redo the setup, there are two options:
 
 
 2. If using `docker-compose`, then simply remove the volumes e.g.
-
-	```shell
-	docker volume rm nextcloud_db
-	docker volume rm nextcloud_nextcloud
-	```
+ ```sh
+docker volume rm nextcloud_db
+docker volume rm nextcloud_nextcloud
+```
 	
-### 14. Updating Nextcloud
+### 13. Updating Nextcloud
 
-1. Nextcloud can be simply updated and restarted by 
-	```shell
-	sudo docker-compose pull
-	sudo docker-compose down
-	sudo docker-compose up -d`
-	```
+1. Nextcloud can be simply updated and restarted by
+
+	```sh
+sudo docker-compose pull
+sudo docker-compose down
+sudo docker-compose up -d`
+```
 	
 2. However, Nextcloud can only be updated one major version at a time. In this case, specify the specific version in `docker-compose.yml` e.g. 
 
 	```yml
-	image: nextcloud:25
-	```
+image: nextcloud:25
+```
 
 3. After updating, verifying the security and setup warnings. If the warning `The database is missing some indexes. Due to the fact that adding indexes on big tables could take some time they were not added automatically.` is obtained, run the following command ([ref](https://www.reddit.com/r/NextCloud/comments/r9zw8r/how_to_run_occ_command_to_add_missing_indices/)):
 
-	```console
-	sudo docker exec --user www-data nextcloud_app php occ db:add-missing-indices
-	```
+	```sh
+sudo docker exec --user www-data nextcloud_app php occ db:add-missing-indices
+```
 	
 4. If MariaDB is updated, we can update the database as such:
-	```console
-	source .env && docker-compose exec nextcloud-mariadb mysql_upgrade -uroot -p${MARIADB_ROOT_PASSWORD}
-	```
+
+	```sh
+source .env && docker-compose exec nextcloud-mariadb mysql_upgrade -uroot -p${MARIADB_ROOT_PASSWORD}
+```
 
 
 ---
@@ -535,8 +529,8 @@ To enable the Nextcloud container to access mariadb, setup a separate mariadb co
 - Add root password as environment variable:
 
 	```
-	MYSQL_ROOT_PASSWORD:***
-	```
+MYSQL_ROOT_PASSWORD:***
+```
 
 - Create and start container.
 
@@ -546,9 +540,9 @@ To enable the Nextcloud container to access mariadb, setup a separate mariadb co
 
 - Create nextcloud folder:
 
-	```bash
-	mkdir -p /home/cloud.site.com/public_html/nextcloud
-	```
+	```sh
+mkdir -p /home/cloud.site.com/public_html/nextcloud
+```
 
 - Create Nextcloud docker from CyberPanel.
 
@@ -578,7 +572,7 @@ To enable the Nextcloud container to access mariadb, setup a separate mariadb co
 	- Enable HSTS by setting Header Operations:
 	
 		```
-		Header always set Strict-Transport-Security "max-age=31536000" 
+Header always set Strict-Transport-Security "max-age=31536000" 
 		```
 		
 		![details](/assets/images/cyberpanel/ols_static_context.png){: .align-center width="80%"}
@@ -589,11 +583,11 @@ To enable the Nextcloud container to access mariadb, setup a separate mariadb co
 		  <button class="copy-code-button btn btn--inverse btn--small">Copy</button>
 		</div>
 		```bash
-		RewriteRule ^\.well-known/carddav https://%{SERVER_NAME}/remote.php/dav/ [R=301,L]
-		RewriteRule ^\.well-known/caldav https://%{SERVER_NAME}/remote.php/dav/ [R=301,L]
-		RewriteCond %{HTTPS} !=on
-		RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-		RewriteRule (.*)$ http://nextcloud/$1 [P,L,E=PROXY-HOST:cloud.domain.com]
+RewriteRule ^\.well-known/carddav https://%{SERVER_NAME}/remote.php/dav/ [R=301,L]
+RewriteRule ^\.well-known/caldav https://%{SERVER_NAME}/remote.php/dav/ [R=301,L]
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+RewriteRule (.*)$ http://nextcloud/$1 [P,L,E=PROXY-HOST:cloud.domain.com]
 		```
 		
 		![details](/assets/images/cyberpanel/ols_static_rewrite.png){: .align-center width="80%"}
@@ -606,13 +600,14 @@ To enable the Nextcloud container to access mariadb, setup a separate mariadb co
 	<div class="notice" markdown="1">
 	**Debug Rewrite Rules**: 
 	1. in `Virtual Hosts` &rarr; website &rarr; `Rewrite`:
-	```
-	Log Level: 9
-	``` 
+	
+		```
+Log Level: 9
+		``` 
 
 	2. Check error logs:
-	```bash
-	tail -f /usr/local/lsws/logs/error.log
+	```sh
+tail -f /usr/local/lsws/logs/error.log
 	```
 	</div>
 	
@@ -634,9 +629,9 @@ OpenLiteSpeed does not support `SetEnvIf` for headers (e.g. `env=HTTPS` does not
 		- Rewrite Rules:
 		
 			```
-			RewriteCond %{HTTPS} !=on
-			RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-			RewriteRule (.*)$ http://collabora/$1 [P,L,E=PROXY-HOST:office.domain.com]
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+RewriteRule (.*)$ http://collabora/$1 [P,L,E=PROXY-HOST:office.domain.com]
 			```
 		
 	- Add `Web Socket Proxy`:
@@ -657,7 +652,7 @@ OpenLiteSpeed does not support `SetEnvIf` for headers (e.g. `env=HTTPS` does not
 		- URI: `/push/`
 		- Rewrite Rules: 
 		```
-		RewriteRule (.*)$ http://notify_push/$1 [P,L,E=PROXY-HOST:cloud.domain.com]
+RewriteRule (.*)$ http://notify_push/$1 [P,L,E=PROXY-HOST:cloud.domain.com]
 		```
 
 	- Add `Web Socket Proxy`:
