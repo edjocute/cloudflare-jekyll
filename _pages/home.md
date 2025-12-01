@@ -9,10 +9,12 @@ header:
     caption: "Photo credit: Illustris"
 ---
 
-Welcome to my page! I'm Eddie, a senior scientist at the Institute of High Performance Computing (IHPC) located in Singapore.
+Welcome! I’m Eddie, a Senior Scientist in A*STAR’s **Future Energy Acceleration and Translation (FEAT)** programme and the **Institute of High Performance Computing (IHPC)**.
 
-Drawing on my graduate training as an astrophysicist, I now tackle research problems at the intersection of Physics and Machine Learning. 
-I describe more about my current research [here]({% link _pages/about.md %}) and you can find a list of my current research and published papers on the [Projects]({% link _pages/projects.md %}) page.
+My work sits at the intersection of physics, machine learning, and high-performance simulation, with a focus on advancing fusion energy. I study how plasmas behave in magnetic-confinement reactors, how materials respond under extreme conditions, and how data-driven approaches can accelerate modelling, diagnostics, and control.
 
+Trained originally as an astrophysicist, I bring that background to understanding complex physical systems and developing predictive computational tools. Today, my research spans both fundamental plasma physics and applied challenges relevant to next-generation fusion reactors.
 
-On this [page]({% link _pages/posts.md %}), I have also documented my experiences with configuring a personal server to host various projects and services. I hope you will find these notes useful.
+You can explore my ongoing projects and publications on the [Projects]({% link _pages/projects.md %}) page.
+
+I also keep notes({% link _pages/posts.md %}) on configuring and operating my personal server—part hobby, part experimental platform for hosting tools and workflows—which may be useful if you’re interested in self-hosted setups.
